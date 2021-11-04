@@ -54,7 +54,6 @@ module pwm_feeder(
             for(i = 0; i < 24; i = i + 1) begin
                 pwm_depth[i] <= 8'b00000000;
             end
-            
         end else begin
             if (prescaler == 0) begin
                 prescaler <= prescaler + 1'b1;
