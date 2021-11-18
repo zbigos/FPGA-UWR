@@ -24,15 +24,17 @@ set_io   sseg[5] 32 // f
 set_io   sseg[6] 42 // g
 set_io   sseg[7] 28 // dp
 
-set_io   dip[0] 27
-set_io   dip[1] 26
-set_io   dip[2] 25
-set_io   dip[3] 23
-set_io   dip[4] 21
-set_io   dip[5] 20
-set_io   dip[6] 19
-set_io   dip[7] 18
+set_io   dip[0] 26
+set_io   dip[1] 23
+set_io   dip[2] 20
+set_io   dip[3] 18
+set_io   dip[4] 27
+set_io   dip[5] 25
+set_io   dip[6] 21
+set_io   dip[7] 19
 
 set_io   aux1 39
 set_io   aux2 40
 set_io   aux3 41
+
+set_io ledg 37

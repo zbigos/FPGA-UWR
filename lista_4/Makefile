@@ -1,5 +1,5 @@
 # FPGA variables
-SOURCES = src/stoper.v src/displaydriver.v src/bcdmapper.v src/pwm.v src/pwm_feeder.v src/numdriver.v src/bcd.v
+SOURCES = src/stoper.v src/displaydriver.v src/bcdop.v src/volatile_bcd.v src/aggregator.v src/calc.v src/bcdmapper.v src/pwm.v src/pwm_feeder.v src/numdriver.v src/bcd.v
 PROJECT = fpga/$(NAME)
 ICEBREAKER_DEVICE = up5k
 ICEBREAKER_PIN_DEF = fpga/icebreaker.pcf
@@ -15,6 +15,12 @@ make_pwm:
 	icepack pwm.asc pwm.bin
 	iceprog pwm.bin
 
+make_calc:
+	yosys  -l fpga/yosys.log -p 'synth_ice40 -top calc -json calc.json' $(SOURCES)
+	nextpnr-ice40 -l fpga/nextpnr.log --seed $(SEED) --freq 10 --package $(ICEBREAKER_PACKAGE) --$(ICEBREAKER_DEVICE) --asc calc.asc --pcf $(ICEBREAKER_PIN_DEF) --json calc.json
+	icepack calc.asc calc.bin
+	iceprog calc.bin
+
 make_timer:
 	yosys  -l fpga/yosys.log -p 'synth_ice40 -top stoper -json stoper.json' $(SOURCES)
 	nextpnr-ice40 -l fpga/nextpnr.log --seed $(SEED) --freq 10 --package $(ICEBREAKER_PACKAGE) --$(ICEBREAKER_DEVICE) --asc timer.asc --pcf $(ICEBREAKER_PIN_DEF) --json stoper.json
@@ -26,7 +32,7 @@ make_timer_gui:
 	nextpnr-ice40 -l fpga/nextpnr.log --seed $(SEED) --freq 10 --package $(ICEBREAKER_PACKAGE) --$(ICEBREAKER_DEVICE) --asc timer.asc --pcf $(ICEBREAKER_PIN_DEF) --json stoper.json --gui
 
 show_synth_timer:
-	yosys -p "read_verilog src/stoper.v; proc; flatten; opt; show -colors 2 -width -signed"
+	yosys -p "read_verilog src/calc.v; proc; flatten; opt; show -colors 2 -width -signed"
 
 clean:
 	rm fpga/nextpnr.log
