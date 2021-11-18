@@ -1,0 +1,38 @@
+# 12 MHz clock
+set_io   clk        35
+set_frequency clk 12
+
+set_io   reset 10
+
+# digit_selector
+set_io   digit[0] 3 // 0
+set_io   digit[1] 48 // 1
+set_io   digit[2] 44 // 2
+set_io   digit[3] 46 // 3
+set_io   digit[4] 47 // 4
+set_io   digit[5] 4 // 5
+set_io   digit[6] 2 // 6
+set_io   digit[7] 45 // 7
+
+# top_pins
+set_io   sseg[0] 31 // a
+set_io   sseg[1] 34 // b
+set_io   sseg[2] 36 // c 
+set_io   sseg[3] 38 // d
+set_io   sseg[4] 43 // e
+set_io   sseg[5] 32 // f
+set_io   sseg[6] 42 // g
+set_io   sseg[7] 28 // dp
+
+set_io   dip[0] 26
+set_io   dip[1] 23
+set_io   dip[2] 20
+set_io   dip[3] 18
+set_io   dip[4] 27
+set_io   dip[5] 25
+set_io   dip[6] 21
+set_io   dip[7] 19
+
+set_io   aux1 39
+set_io   aux2 40
+set_io   aux3 41
